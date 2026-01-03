@@ -19,7 +19,7 @@ const Footer: React.FC<Props> = ({ onNavClick }) => {
           <div className="space-y-8">
             <div className="flex items-center gap-4 cursor-pointer group" onClick={() => onNavClick('home')}>
               <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shadow-2xl group-hover:scale-105 transition-transform duration-500 overflow-hidden p-1">
-                <img src="logoimg.jpeg" alt="Fesola International Logo" className="w-full h-full object-contain" />
+                <img src="/images/logoimg.png" alt="Fesola International Logo" className="w-full h-full object-contain" />
               </div>
               <div>
                 <h1 className="text-lg font-black italic serif text-white leading-none uppercase tracking-tight">Fesola International</h1>
