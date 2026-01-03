@@ -1,0 +1,53 @@
+
+
+{
+  "school": {
+    "name": "Fesola International Kiddies Schools",
+    "tagline": "Academic excellence and uprightness",
+    "lastUpdated": "2026-01-03",
+    "timezone": "Africa/Lagos"
+  },
+  "calendar": {
+    "academicYear": "2025/2026",
+    "terms": [
+      {
+        "name": "First Term",
+        "startDate": "2026-01-05",
+        "resumptionDate": "2026-01-05",
+        "midTermBreak": { "start": "2026-03-27", "end": "2026-04-05" },
+        "endDate": "2026-04-05"
+      }
+    ],
+    "notes": [
+      "Dates are subject to change. Confirm with the school office for updates."
+    ]
+  },
+  "campuses": [
+    {
+      "name": "Abule Egba Campus",
+      "address": "Abule Egba, Lagos",
+      "phone": ["0803 427 3061", "0802 872 8136"],
+      "whatsapp": "+2348028728136",
+      "email": "info@fesola.edu.ng",
+      "hours": "Mon–Fri, 8am–4pm"
+    }
+  ],
+  "admissions": {
+    "howToApply": [
+      "Visit the school office or contact via WhatsApp",
+      "Complete the admission form",
+      "Submit required documents",
+      "Assessment/interview (where applicable)"
+    ],
+    "requiredDocuments": [
+      "Birth certificate",
+      "Previous school report (if transferring)",
+      "Passport photographs"
+    ]
+  },
+  "fees": {
+    "publiclyShareable": false,
+    "policy": "Fees vary by class and are confirmed by the admin office.",
+    "bands": []
+  }
+}

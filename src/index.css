@@ -1,0 +1,68 @@
+/* src/index.css */
+
+/* If you're using Tailwind, keep these.
+   If you're NOT using Tailwind, you can delete these 3 lines. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global sanity: prevents weird oversized UI */
+:root {
+  --app-font-size: 16px;
+  --app-line-height: 1.5;
+}
+
+html {
+  font-size: var(--app-font-size);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-size: 1rem;
+  line-height: var(--app-line-height);
+  overflow-x: hidden;
+}
+
+/* Box sizing everywhere */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Media never overflows */
+img,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ✅ Big culprit: inputs/buttons inherit crazy sizes from parents or component styles */
+button,
+input,
+select,
+textarea {
+  font: inherit;        /* match app font */
+  font-size: 1rem;      /* locks to normal size */
+  line-height: 1.25rem;
+}
+
+/* Prevent “giant textarea/input” look on some pages */
+input,
+select,
+textarea {
+  max-width: 100%;
+}
+
+/* Optional: keep headings from going wild if any component uses inherited scaling */
+h1 { font-size: 2rem; line-height: 2.25rem; }
+h2 { font-size: 1.5rem; line-height: 2rem; }
+h3 { font-size: 1.25rem; line-height: 1.75rem; }
+
+/* Optional: links and text rendering */
+a { color: inherit; }
