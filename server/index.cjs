@@ -12,8 +12,8 @@ const express = require("express");
 const cors = require("cors");
 const { GoogleGenAI } = require("@google/genai");
 
-const aiRoutes = require("./src/routes/ai.routes");
-const adminFactsRoutes = require("./src/routes/adminFacts.routes");
+const aiRoutes = require("./src/routes/ai.routes.cjs");
+const adminFactsRoutes = require("./src/routes/adminFacts.routes.cjs");
 
 const app = express();
 
