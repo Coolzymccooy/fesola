@@ -38,7 +38,7 @@ const Navbar: React.FC<Props> = ({ activeView, onApplyClick, onNavClick }) => {
         <div className="flex items-center gap-4 md:gap-6 cursor-pointer group shrink-0" onClick={() => handleNav('home')}>
           <div className="w-12 h-12 md:w-20 md:h-20 rounded-xl md:rounded-2xl bg-white flex items-center justify-center shadow-xl group-hover:scale-105 transition-all duration-500 overflow-hidden p-1 border border-slate-100">
             <img 
-              src="/images/logoimg.jpeg" 
+              src="/images/logo.png" 
               alt="Fesola International Logo" 
               className="w-full h-full object-contain block"
               onError={(e) => {               
