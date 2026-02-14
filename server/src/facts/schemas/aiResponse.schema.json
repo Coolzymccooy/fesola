@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["answer", "factsUsed", "unknowns", "handoff"],
+  "properties": {
+    "answer": { "type": "string" },
+    "factsUsed": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["needed", "message", "whatsapp", "phone"],
+      "properties": {
+        "needed": { "type": "boolean" },
+        "message": { "type": "string" },
+        "whatsapp": { "type": ["string", "null"] },
+        "phone": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

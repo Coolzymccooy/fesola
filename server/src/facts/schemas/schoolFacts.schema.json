@@ -1,7 +1,7 @@
 {
   "type": "object",
-  "additionalProperties": true,
   "required": ["school", "calendar", "campuses", "admissions", "fees"],
+  "additionalProperties": true,
   "properties": {
     "school": {
       "type": "object",
@@ -13,36 +13,9 @@
         "timezone": { "type": "string" }
       }
     },
-    "calendar": {
-      "type": "object",
-      "required": ["academicYear", "terms"],
-      "properties": {
-        "academicYear": { "type": "string" },
-        "terms": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "required": ["name", "startDate", "resumptionDate", "endDate"],
-            "properties": {
-              "name": { "type": "string" },
-              "startDate": { "type": "string" },
-              "resumptionDate": { "type": "string" },
-              "endDate": { "type": "string" }
-            }
-          }
-        }
-      }
-    },
+    "calendar": { "type": "object" },
     "campuses": { "type": "array" },
     "admissions": { "type": "object" },
-    "fees": {
-      "type": "object",
-      "required": ["publiclyShareable", "policy", "bands"],
-      "properties": {
-        "publiclyShareable": { "type": "boolean" },
-        "policy": { "type": "string" },
-        "bands": { "type": "array" }
-      }
-    }
+    "fees": { "type": "object" }
   }
 }

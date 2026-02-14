@@ -34,7 +34,13 @@ export default function AdminFactsPage() {
         setStatus("loading");
         setError("");
 
-        const r = await fetch(`${API_BASE}/api/admin/facts`);
+       const r = await fetch(`${API_BASE}/api/admin/facts`, {
+  headers: {
+    "x-admin-token": providedKey,
+  },
+});
+
+        
         const data = await r.json().catch(() => ({}));
 
         if (!r.ok) throw new Error(data?.error || "Failed to load facts");
@@ -67,10 +73,14 @@ export default function AdminFactsPage() {
       setError("");
 
       const r = await fetch(`${API_BASE}/api/admin/facts`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsed),
-      });
+  method: "PUT",
+  headers: {
+    "Content-Type": "application/json",
+    "x-admin-token": providedKey,
+  },
+  body: JSON.stringify(parsed),
+});
+
 
       const data = await r.json().catch(() => ({}));
       if (!r.ok) throw new Error(data?.error || data?.details || "Save failed");

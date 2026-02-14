@@ -26,15 +26,22 @@ import SchoolGallery from './src/components/SchoolGallery';
 import { locations } from './data/locations';
 import AdminFactsPage from "./src/pages/AdminFactsPage";
 
-export type View = 'home' | 'about' | 'admissions' | 'faq' | 'resources' | 'careers' | 'feedback' | 'news' | '__admin_facts'; 
 
-const App: React.FC = () => {
-  const [currentView, setCurrentView] = useState<View>('home');
+export type View = 'home' | 'about' | 'admissions' | 'faq' | 'resources' | 'careers' | 'feedback' | 'news' | 'adminFacts'; 
+
+  const App: React.FC = () => {
+  const initialView = (new URLSearchParams(window.location.search).get("view") as View) || "home";
+  const [currentView, setCurrentView] = useState<View>(initialView);
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
   const [isJobModalOpen, setIsJobModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState('');
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [prefilledSubject, setPrefilledSubject] = useState('');
+   const params = new URLSearchParams(window.location.search);
+    const isAdminFacts = params.get("view") === "adminFacts";
+     if (isAdminFacts) {
+    return <AdminFactsPage />;
+  }
 
   // --- hidden admin route via URL
 React.useEffect(() => {
@@ -165,7 +172,7 @@ React.useEffect(() => {
                 </div>
                 <div className="pt-4 border-t border-slate-100">
                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Our Location</p>
-                    <p className="text-sm font-bold text-slate-700">1, Puposola Street, off Amusan Road, Abule Egba, Lagos State</p>
+                    <p className="text-sm font-bold text-slate-700">5, Puposola Street, off Amusan Road, Abule Egba, Lagos State</p>
                 </div>
               </div>
               <div className="lg:col-span-7">
@@ -198,7 +205,7 @@ React.useEffect(() => {
         {currentView === '__admin_facts' && <AdminFactsPage />}
       </main>
 
-      {currentView !== '__admin_facts' && <Footer onNavClick={handleNavClick} />}
+      {currentView !== 'adminFacts' && <Footer onNavClick={handleNavClick} />}
       
       <AIAssistant />
       <ApplyModal isOpen={isApplyModalOpen} onClose={() => setIsApplyModalOpen(false)} />

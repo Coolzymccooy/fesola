@@ -16,7 +16,7 @@ const Testimonials: React.FC = () => {
     {
       name: "Dr. Fatima",
       role: "Guardian",
-      text: "A world-class environment right here in Ikeja. We couldn't be happier with the progress we've seen in our wards.",
+      text: "A world-class environment right here in Abule Egba. We couldn't be happier with the progress we've seen in our wards.",
     }
   ];
 

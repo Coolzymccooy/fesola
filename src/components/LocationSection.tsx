@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { CampusLocation } from '../types';
+import { CampusLocation } from '@/types';
 
 interface Props {
   locations: CampusLocation[];

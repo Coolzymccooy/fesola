@@ -75,7 +75,8 @@ const AIAssistant: React.FC = () => {
       const data = await r.json().catch(() => ({}));
       if (!r.ok) throw new Error(data?.error || "Request failed");
 
-      setMessages((p) => [...p, { role: "bot", text: data.text || "OK." }]);
+      const botText = data.answer ?? data.text ?? "Sorry, something went wrong.";
+     setMessages((p) => [...p, { role: "bot", text: botText }]);
     } catch (e) {
       setMessages((p) => [
         ...p,
