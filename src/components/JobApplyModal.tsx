@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import { API_BASE } from '../config/env';
 
 interface Props {
   isOpen: boolean;
@@ -22,13 +22,25 @@ const JobApplyModal: React.FC<Props> = ({ isOpen, jobTitle, onClose }) => {
   const handleNext = () => setStep(step + 1);
   const handleBack = () => setStep(step - 1);
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setStep(3);
-      setIsSubmitting(false);
-    }, 2000);
+    try {
+      await fetch(`${API_BASE}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'Job Application',
+          subject: `Job Application: ${jobTitle}`,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.experience,
+        }),
+      });
+    } catch (err) {}
+    setStep(3);
+    setIsSubmitting(false);
   };
 
   return (

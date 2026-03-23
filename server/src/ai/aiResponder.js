@@ -14,7 +14,7 @@ const { validateAiJson } = require("./safetyChecks");
 const ajv = new Ajv({ allErrors: true, allowUnionTypes: true });
 const validateResponse = ajv.compile(aiResponseSchema);
 
-const MODEL = "gemini-2.0-flash";
+const MODEL = "gemini-2.5-flash";
 
 function extractJson(text) {
   try { return JSON.parse(text); } catch {}

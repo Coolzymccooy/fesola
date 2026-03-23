@@ -1,53 +1,82 @@
-
-
 {
   "school": {
     "name": "Fesola International Kiddies Schools",
-    "tagline": "Academic excellence and uprightness",
-    "lastUpdated": "2026-01-03",
-    "timezone": "Africa/Lagos"
+    "tagline": "Discover, Nurture, Excel.",
+    "lastUpdated": "2026-03-23",
+    "timezone": "Africa/Lagos",
+    "vision": "To be a global citadel of learning breeding innovative future leaders.",
+    "coreValues": [
+      "Excellence",
+      "Integrity",
+      "Innovation",
+      "Discipline"
+    ]
   },
   "calendar": {
-    "academicYear": "2025/2026",
-    "terms": [
+    "currentTerm": "Spring Term 2026",
+    "resumptionDate": "January 12, 2026",
+    "midTermBreak": "March 2 - March 6, 2026",
+    "vacationDate": "April 17, 2026",
+    "upcomingEvents": [
       {
-        "name": "First Term",
-        "startDate": "2026-01-05",
-        "resumptionDate": "2026-01-05",
-        "midTermBreak": { "start": "2026-03-27", "end": "2026-04-05" },
-        "endDate": "2026-04-05"
+        "date": "April 9, 2026",
+        "event": "Inter-House Sports Competition at Main Arena"
+      },
+      {
+        "date": "April 15, 2026",
+        "event": "Virtual Open House for Prospective Parents"
       }
-    ],
-    "notes": [
-      "Dates are subject to change. Confirm with the school office for updates."
     ]
   },
   "campuses": [
     {
-      "name": "Abule Egba Campus",
-      "address": "Abule Egba, Lagos",
-      "phone": ["0803 427 3061", "0802 872 8136"],
-      "whatsapp": "+2348028728136",
-      "email": "info@fesola.edu.ng",
-      "hours": "Mon–Fri, 8am–4pm"
+      "name": "Abule Egba Main Campus",
+      "address": "5 Puposola Street, Off Amusan Road, Abule Egba, Lagos State",
+      "contact": "+234 800 000 0000",
+      "gradesOffered": [
+        "Nursery",
+        "Primary",
+        "Secondary"
+      ],
+      "facilities": [
+        "STEM Laboratory",
+        "Olympic-sized Swimming Pool",
+        "AI Coding Hub"
+      ]
     }
   ],
   "admissions": {
-    "howToApply": [
-      "Visit the school office or contact via WhatsApp",
-      "Complete the admission form",
-      "Submit required documents",
-      "Assessment/interview (where applicable)"
+    "status": "Currently Open for 2025/2026 Academic Session!! yaay",
+    "process": [
+      "Step 1: Purchase admission form online.",
+      "Step 2: Take the Computer Based Entrance Examination.",
+      "Step 3: Interview with the Principal.",
+      "Step 4: Letter of Admission and Fee payment."
     ],
-    "requiredDocuments": [
-      "Birth certificate",
-      "Previous school report (if transferring)",
-      "Passport photographs"
-    ]
+    "requirements": "Birth certificate, 2 Passport photographs, Last school's transcript."
   },
   "fees": {
-    "publiclyShareable": false,
-    "policy": "Fees vary by class and are confirmed by the admin office.",
-    "bands": []
-  }
+    "currency": "NGN",
+    "nursery": "₦150,000 per term",
+    "primary": "₦200,000 per term",
+    "secondary": "₦350,000 per term",
+    "boardingFee": "₦150,000 additional per term",
+    "paymentDetails": "Payments should be strictly made to the Fesola International Zenith Bank Account: 101xxxxxx."
+  },
+  "extracurriculars": [
+    "Robotics & AI Club",
+    "Ballet & Creative Arts",
+    "Chess Academy",
+    "Junior Coding League"
+  ],
+  "faq": [
+    {
+      "question": "Do you offer school bus services?",
+      "answer": "Yes, we have ultra-modern air-conditioned buses covering Ikeja, Agege, and Ogba routes."
+    },
+    {
+      "question": "Are lunches provided?",
+      "answer": "Yes, we serve highly nutritious hot meals curated by our in-house pediatric nutritionist."
+    }
+  ]
 }

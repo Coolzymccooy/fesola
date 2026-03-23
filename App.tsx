@@ -25,12 +25,13 @@ import CareersPage from './src/components/CareersPage';
 import FeedbackPage from './src/components/FeedbackPage';
 import NewsPage from './src/components/NewsPage';
 import SchoolGallery from './src/components/SchoolGallery';
+import AlumniPage from './src/components/AlumniPage';
 import { locations } from './data/locations';
 import AdminFactsPage from "./src/pages/AdminFactsPage";
 import { Preloader } from "./src/components/Preloader";
 import { CustomCursor } from "./src/components/CustomCursor";
 
-export type View = 'home' | 'about' | 'admissions' | 'faq' | 'resources' | 'careers' | 'feedback' | 'news' | 'adminFacts';
+export type View = 'home' | 'about' | 'admissions' | 'faq' | 'resources' | 'careers' | 'feedback' | 'news' | 'adminFacts' | 'alumni';
 
 const App: React.FC = () => {
   // Determine the initial view from the URL at mount time (before any state is set).
@@ -82,7 +83,7 @@ const App: React.FC = () => {
   };
 
   const handleNavClick = (target: string) => {
-    const viewTargets: View[] = ['about', 'admissions', 'faq', 'resources', 'careers', 'feedback', 'home', 'news'];
+    const viewTargets: View[] = ['about', 'admissions', 'faq', 'resources', 'careers', 'feedback', 'home', 'news', 'alumni'];
     
     if (viewTargets.includes(target as View)) {
       setCurrentView(target as View);
@@ -115,7 +116,7 @@ const App: React.FC = () => {
         )}
       </div>
       
-      <main className="relative pt-[180px]">
+      <main className={`relative ${currentView === 'adminFacts' ? 'pt-[60px]' : 'pt-[180px]'}`}>
         {currentView === 'home' && (
           <div className="animate-in fade-in duration-700">
             <Hero
@@ -196,6 +197,7 @@ const App: React.FC = () => {
         {currentView === 'careers' && <CareersPage onContactClick={handleNavigateToContact} onApply={handleJobApply} />}
         {currentView === 'feedback' && <FeedbackPage />}
         {currentView === 'news' && <NewsPage />}
+        {currentView === 'alumni' && <AlumniPage onContactClick={handleNavigateToContact} />}
         {currentView === 'adminFacts' && <AdminFactsPage />}
       </main>
 

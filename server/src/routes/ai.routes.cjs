@@ -52,8 +52,29 @@ module.exports = function aiRoutes({ getAI }) {
       if (!collectedData?.childName || !collectedData?.parentPhone) {
         return res.status(400).json({ error: "Incomplete application data" });
       }
-      const entry = { ...collectedData, submittedAt: new Date().toISOString() };
-      console.log("[enrollment] New application submitted:", JSON.stringify(entry));
+
+      const fs = require('fs');
+      const path = require('path');
+      const CRM_FILE = path.join(__dirname, "../facts/crm_store.json");
+      let all = [];
+      if (fs.existsSync(CRM_FILE)) {
+        try { all = JSON.parse(fs.readFileSync(CRM_FILE, "utf-8")); } catch{}
+      }
+
+      const logEntry = {
+        id: Date.now(),
+        type: "Enrollment",
+        name: collectedData?.parentName || "Unknown Parent",
+        email: collectedData?.parentEmail || "No Email",
+        phone: collectedData?.parentPhone || "",
+        subject: `Enrollment: ${collectedData?.childName} (Grade: ${collectedData?.gradeApplying})`,
+        message: `Child DOB: ${collectedData?.dateOfBirth}\nAdmission Type: ${collectedData?.admissionType}\nPrevious School: ${collectedData?.previousSchool}\nNotes: ${collectedData?.specialNotes}`,
+        status: "New",
+        receivedAt: new Date().toISOString()
+      };
+      all.unshift(logEntry);
+      fs.writeFileSync(CRM_FILE, JSON.stringify(all, null, 2), "utf-8");
+
       res.json({ ok: true, message: "Application received. The admissions team will contact you shortly." });
     } catch (e) {
       res.status(500).json({ error: e?.message || "Server error" });
@@ -75,6 +96,16 @@ module.exports = function aiRoutes({ getAI }) {
     } catch (e) {
       console.error("[Gemini API Error]:", e);
       res.status(500).json({ error: e?.message || "Server error", details: e?.details || null });
+    }
+  });
+
+  // ── Public Facts (For UI Data Binding) ───────────────────────
+  router.get("/public-facts", (req, res) => {
+    try {
+      const facts = getFacts();
+      res.json(facts);
+    } catch (e) {
+      res.status(500).json({ error: "Could not load public facts" });
     }
   });
 

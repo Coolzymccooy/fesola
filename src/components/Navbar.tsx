@@ -16,6 +16,7 @@ const Navbar: React.FC<Props> = ({ activeView, onApplyClick, onNavClick }) => {
     { label: 'Admission', target: 'admissions', hasDropdown: true, isDramatic: true },
     { label: 'Student Life', target: 'resources', hasDropdown: true, isDramatic: true },
     { label: 'Teaching & Learning', target: 'about', hasDropdown: true, isDramatic: true },
+    { label: 'Old Students', target: 'alumni', hasDropdown: false, isDramatic: true },
     { label: 'Information', target: 'faq', hasDropdown: true, isDramatic: true },
     { label: 'Exclusive Parents', target: 'feedback', isExclusive: true },
   ];

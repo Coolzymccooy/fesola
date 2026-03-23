@@ -21,19 +21,20 @@ const app = express();
 
 /* ------------------------------ Env loading ------------------------------ */
 // Load server/.env locally (Render/Vercel should use dashboard env vars)
-const rootEnvPath = path.join(process.cwd(), "..", ".env.local");
-const altRootEnvPath = path.join(process.cwd(), ".env.local");
-const envPath = path.join(process.cwd(), "server", ".env");
+const envPaths = [
+  path.join(process.cwd(), "..", ".env.local"),
+  path.join(process.cwd(), "..", ".env"),
+  path.join(process.cwd(), ".env.local"),
+  path.join(process.cwd(), ".env"),
+  path.join(process.cwd(), "server", ".env")
+];
 
-if (fs.existsSync(rootEnvPath)) {
-  require("dotenv").config({ path: rootEnvPath });
-} else if (fs.existsSync(altRootEnvPath)) {
-  require("dotenv").config({ path: altRootEnvPath });
-} else if (fs.existsSync(envPath)) {
-  require("dotenv").config({ path: envPath });
-} else {
-  require("dotenv").config();
+for (const p of envPaths) {
+  if (fs.existsSync(p)) {
+    require("dotenv").config({ path: p });
+  }
 }
+require("dotenv").config();
 
 /* -------------------------------- Config -------------------------------- */
 const PORT = Number(process.env.PORT || 5052);
@@ -84,13 +85,10 @@ app.use(
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization", "x-admin-token"],
     optionsSuccessStatus: 204,
   })
 );
-
-// Handle preflight for all routes
-app.options("*", cors());
 
 app.use(express.json({ limit: "10mb" }));
 

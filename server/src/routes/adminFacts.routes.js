@@ -6,10 +6,14 @@ module.exports = function adminFactsRoutes() {
 
   // beta protection (simple token). Set ADMIN_TOKEN in env.
   function requireAdmin(req, res, next) {
-    const token = req.header("x-admin-token");
-    const expected = process.env.ADMIN_TOKEN;
-    if (!expected) return res.status(403).json({ error: "ADMIN_TOKEN not configured" });
-    if (token !== expected) return res.status(401).json({ error: "Unauthorized" });
+    const token = req.header("x-admin-token")?.trim();
+    const token1 = (process.env.ADMIN_TOKEN || "").trim();
+    const token2 = (process.env.VITE_ADMIN_TOKEN || "").trim();
+    if (!token1 && !token2) return res.status(403).json({ error: "ADMIN_TOKEN not configured" });
+    if (token !== token1 && token !== token2) {
+      console.log(`[AUTH FAILED] provided: "${token}", expected1: "${token1}", expected2: "${token2}"`);
+      return res.status(401).json({ error: "Unauthorized" });
+    }
     next();
   }
 

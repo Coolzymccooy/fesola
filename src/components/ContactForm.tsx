@@ -149,15 +149,21 @@ const ContactForm: React.FC<Props> = ({ prefilledSubject }) => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-[10px] font-black text-blue-800 uppercase ml-2 tracking-widest opacity-60">Subject</label>
-                <input
-                  type="text"
+                <label className="text-[10px] font-black text-blue-800 uppercase ml-2 tracking-widest opacity-60">Classification</label>
+                <select
                   name="subject"
                   value={formData.subject}
-                  onChange={handleChange}
-                  className="w-full bg-white border border-slate-200 focus:border-blue-600 focus:ring-4 focus:ring-blue-600/5 rounded-2xl px-6 py-4 outline-none transition-all text-[#1a1a1a] font-bold text-sm"
-                  placeholder="e.g. Nursery Admissions"
-                />
+                  onChange={handleChange as any}
+                  className="w-full bg-white border border-slate-200 focus:border-blue-600 focus:ring-4 focus:ring-blue-600/5 rounded-2xl px-6 py-4 outline-none transition-all text-[#1a1a1a] font-bold text-sm appearance-none cursor-pointer"
+                >
+                  <option value="" disabled>Select Enquiry Type...</option>
+                  <option value="General Enquiry">General Enquiry</option>
+                  <option value="Admissions / Enrollment">Admissions / Enrollment</option>
+                  <option value="Careers / Job Application">Careers / Job Application</option>
+                  <option value="Alumni / Old Students">Alumni / Old Students</option>
+                  <option value="Technical Support">Technical Support</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
             </div>
 

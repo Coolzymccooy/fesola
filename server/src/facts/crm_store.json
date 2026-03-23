@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1774309166491,
+    "type": "Enquiry",
+    "name": "Oluwasegun Alabi",
+    "email": "coolshegz@gmail.com",
+    "phone": "+447459541971",
+    "subject": "General Enquiry",
+    "message": "testuing",
+    "status": "New",
+    "receivedAt": "2026-03-23T23:39:26.491Z"
+  },
+  {
+    "id": 1774308926095,
+    "type": "Enquiry",
+    "name": "Oluwasegun Alabi",
+    "email": "coolshegz@gmail.com",
+    "phone": "+447459541971",
+    "subject": "tesy",
+    "message": "test",
+    "status": "New",
+    "receivedAt": "2026-03-23T23:35:26.095Z"
+  }
+]

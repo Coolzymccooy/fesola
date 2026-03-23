@@ -60,9 +60,10 @@ module.exports = function feedbackRoutes({ getAI }) {
   // ── Get AI analysis report (admin only) ──────────────────────
   router.get("/analysis", async (req, res) => {
     try {
-      const token = req.header("x-admin-token");
-      const expected = process.env.ADMIN_TOKEN;
-      if (!expected || token !== expected) {
+      const token = req.header("x-admin-token")?.trim();
+      const token1 = (process.env.ADMIN_TOKEN || "").trim();
+      const token2 = (process.env.VITE_ADMIN_TOKEN || "").trim();
+      if ((!token1 && !token2) || (token !== token1 && token !== token2)) {
         return res.status(401).json({ error: "Unauthorized" });
       }
 
