@@ -1,6 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
-import { FormData, FormStatus } from '../types';
+import React, { useState, useEffect, useRef } from 'react';
+import { FormData, FormStatus } from '@/types';
+import { API_BASE, ENABLE_AI } from '../config/env';
 
 interface Props {
   prefilledSubject?: string;
@@ -16,6 +17,10 @@ const ContactForm: React.FC<Props> = ({ prefilledSubject }) => {
   });
   const [status, setStatus] = useState<FormStatus>('idle');
   const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [aiPrediction, setAiPrediction] = useState<string | null>(null);
+  const [isPredicting, setIsPredicting] = useState(false);
+  const [predictionDismissed, setPredictionDismissed] = useState(false);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (prefilledSubject) {
@@ -41,11 +46,21 @@ const ContactForm: React.FC<Props> = ({ prefilledSubject }) => {
     }
 
     setStatus('submitting');
-    setTimeout(() => {
+    try {
+      const res = await fetch(`${API_BASE}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data?.error || 'Submission failed');
       setStatus('success');
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
       setTimeout(() => setStatus('idle'), 5000);
-    }, 2000);
+    } catch (err) {
+      setErrors({ message: 'Could not send enquiry. Please try again or contact us directly.' });
+      setStatus('idle');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -53,6 +68,27 @@ const ContactForm: React.FC<Props> = ({ prefilledSubject }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
     if (errors[name as keyof FormData]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+    // Trigger AI prediction when the message field has enough text
+    if (name === 'message') {
+      setPredictionDismissed(false);
+      setAiPrediction(null);
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      if (value.length > 20 && ENABLE_AI) {
+        debounceRef.current = setTimeout(async () => {
+          setIsPredicting(true);
+          try {
+            const res = await fetch(`${API_BASE}/api/admissions/chat`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ message: value }),
+            });
+            const data = await res.json().catch(() => ({}));
+            if (res.ok && data.answer) setAiPrediction(data.answer);
+          } catch { /* silent — prediction is non-critical */ }
+          finally { setIsPredicting(false); }
+        }, 700);
+      }
     }
   };
 
@@ -137,6 +173,32 @@ const ContactForm: React.FC<Props> = ({ prefilledSubject }) => {
               ></textarea>
               {errors.message && <p className="text-blue-600 text-[10px] ml-2 font-bold uppercase mt-1">{errors.message}</p>}
             </div>
+
+            {/* AI inline prediction */}
+            {(isPredicting || (aiPrediction && !predictionDismissed)) && (
+              <div className="bg-blue-50 border border-blue-100 rounded-2xl p-5 animate-in fade-in duration-300">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-7 h-7 bg-blue-800 rounded-xl flex items-center justify-center text-white text-[9px] font-black shrink-0 mt-0.5">AI</div>
+                    <div>
+                      <p className="text-[9px] font-black text-blue-700 uppercase tracking-widest mb-1.5">Instant Answer</p>
+                      {isPredicting
+                        ? <div className="flex gap-1.5 items-center h-5"><div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce" /><div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '75ms' }} /><div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} /></div>
+                        : <p className="text-slate-700 text-sm font-medium leading-relaxed">{aiPrediction}</p>
+                      }
+                    </div>
+                  </div>
+                  {!isPredicting && (
+                    <button type="button" onClick={() => setPredictionDismissed(true)} className="text-slate-400 hover:text-slate-600 shrink-0 transition-colors">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                  )}
+                </div>
+                {!isPredicting && aiPrediction && (
+                  <p className="text-[9px] text-blue-500 font-bold mt-3 ml-10 uppercase tracking-widest">Still need help? Send your enquiry below ↓</p>
+                )}
+              </div>
+            )}
 
             <button
               type="submit"

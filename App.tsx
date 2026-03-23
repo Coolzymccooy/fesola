@@ -12,9 +12,11 @@ import Testimonials from './src/components/Testimonials';
 import AnnouncementTicker from './src/components/AnnouncementTicker';
 import Footer from './src/components/Footer';
 import ApplyModal from './src/components/ApplyModal';
+import EnrollmentWizard from './src/components/EnrollmentWizard';
 import JobApplyModal from './src/components/JobApplyModal';
 import GalleryModal from './src/components/GalleryModal';
 import AIAssistant from './src/components/AIAssistant';
+import CampusMatcher from './src/components/CampusMatcher';
 import AboutPage from './src/components/AboutPage';
 import AdmissionsPage from './src/components/AdmissionsPage';
 import FAQPage from './src/components/FAQPage';
@@ -27,37 +29,24 @@ import { locations } from './data/locations';
 import AdminFactsPage from "./src/pages/AdminFactsPage";
 
 
-export type View = 'home' | 'about' | 'admissions' | 'faq' | 'resources' | 'careers' | 'feedback' | 'news' | 'adminFacts'; 
+export type View = 'home' | 'about' | 'admissions' | 'faq' | 'resources' | 'careers' | 'feedback' | 'news' | 'adminFacts';
 
-  const App: React.FC = () => {
-  const initialView = (new URLSearchParams(window.location.search).get("view") as View) || "home";
+const App: React.FC = () => {
+  // Determine the initial view from the URL at mount time (before any state is set).
+  // Supports both /?view=adminFacts and /__admin/facts path patterns.
+  const _params = new URLSearchParams(window.location.search);
+  const _viewParam = _params.get("view") as View | null;
+  const _wantsAdmin =
+    window.location.pathname === "/__admin/facts" || _viewParam === "adminFacts";
+  const initialView: View = _wantsAdmin ? "adminFacts" : (_viewParam && _viewParam !== "adminFacts" ? _viewParam : "home");
+
   const [currentView, setCurrentView] = useState<View>(initialView);
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
+  const [isEnrollmentOpen, setIsEnrollmentOpen] = useState(false);
   const [isJobModalOpen, setIsJobModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState('');
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [prefilledSubject, setPrefilledSubject] = useState('');
-   const params = new URLSearchParams(window.location.search);
-    const isAdminFacts = params.get("view") === "adminFacts";
-     if (isAdminFacts) {
-    return <AdminFactsPage />;
-  }
-
-  // --- hidden admin route via URL
-React.useEffect(() => {
-  const path = window.location.pathname;
-  const params = new URLSearchParams(window.location.search);
-
-  // Allow either:
-  // 1) /__admin/facts?key=...
-  // 2) /?view=adminFacts&key=...
-  const wantsAdmin =
-    path === "/__admin/facts" || params.get("view") === "adminFacts";
-
-  if (wantsAdmin) {
-    setCurrentView("adminFacts");
-  }
-}, []);
 
 
   
@@ -114,25 +103,27 @@ React.useEffect(() => {
       <div className="fixed top-0 left-0 right-0 z-[70]">
         <AnnouncementTicker />
         
-     {currentView !== '__admin_facts' && (
-  <Navbar
-    activeView={currentView}
-    onApplyClick={() => setIsApplyModalOpen(true)}
-    onNavClick={handleNavClick}
-  />
-)}
+        {currentView !== 'adminFacts' && (
+          <Navbar
+            activeView={currentView}
+            onApplyClick={() => setIsApplyModalOpen(true)}
+            onNavClick={handleNavClick}
+          />
+        )}
       </div>
       
       <main className="relative pt-[180px]">
         {currentView === 'home' && (
           <div className="animate-in fade-in duration-700">
-            <Hero 
-              onApplyClick={() => setIsApplyModalOpen(true)} 
+            <Hero
+              onApplyClick={() => setIsEnrollmentOpen(true)}
               onContactClick={handleNavigateToContact}
               onGalleryClick={() => setIsGalleryOpen(true)}
             />
 
             <SchoolStats />
+
+            <CampusMatcher />
 
             <EventsSection onSeeAll={() => handleNavClick('news')} />
 
@@ -191,23 +182,24 @@ React.useEffect(() => {
         )}
 
         {currentView === 'about' && <AboutPage onContactClick={handleNavigateToContact} />}
-        {currentView === 'admissions' && <AdmissionsPage onApplyClick={() => setIsApplyModalOpen(true)} />}
+        {currentView === 'admissions' && <AdmissionsPage onApplyClick={() => setIsEnrollmentOpen(true)} />}
         {currentView === 'faq' && <FAQPage onContactClick={handleNavigateToContact} />}
         {currentView === 'resources' && (
-          <ResourcesPage 
-            onApplyClick={() => setIsApplyModalOpen(true)} 
-            onContactClick={handleNavigateToContact} 
+          <ResourcesPage
+            onApplyClick={() => setIsEnrollmentOpen(true)}
+            onContactClick={handleNavigateToContact}
           />
         )}
         {currentView === 'careers' && <CareersPage onContactClick={handleNavigateToContact} onApply={handleJobApply} />}
         {currentView === 'feedback' && <FeedbackPage />}
         {currentView === 'news' && <NewsPage />}
-        {currentView === '__admin_facts' && <AdminFactsPage />}
+        {currentView === 'adminFacts' && <AdminFactsPage />}
       </main>
 
       {currentView !== 'adminFacts' && <Footer onNavClick={handleNavClick} />}
       
       <AIAssistant />
+      <EnrollmentWizard isOpen={isEnrollmentOpen} onClose={() => setIsEnrollmentOpen(false)} />
       <ApplyModal isOpen={isApplyModalOpen} onClose={() => setIsApplyModalOpen(false)} />
       <JobApplyModal isOpen={isJobModalOpen} jobTitle={selectedJob} onClose={() => setIsJobModalOpen(false)} />
       <GalleryModal isOpen={isGalleryOpen} onClose={() => setIsGalleryOpen(false)} />

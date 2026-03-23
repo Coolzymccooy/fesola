@@ -13,6 +13,7 @@
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
     "cors": "^2.8.5",
+    "nodemailer": "^6.9.16",
     "dotenv": "^16.6.1",
     "express": "^4.21.2",
     "lucide-react": "^0.562.0",

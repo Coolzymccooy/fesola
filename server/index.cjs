@@ -13,7 +13,9 @@ const cors = require("cors");
 const { GoogleGenAI } = require("@google/genai");
 
 const aiRoutes = require("./src/routes/ai.routes.cjs");
-const adminFactsRoutes = require("./src/routes/adminFacts.routes.cjs");
+const adminFactsRoutes = require("./src/routes/adminFacts.routes.js");
+const contactRoutes = require("./src/routes/contact.routes.js");
+const feedbackRoutes = require("./src/routes/feedback.routes.js");
 
 const app = express();
 
@@ -112,6 +114,8 @@ function getAI() {
 // Keeps your clean route injection style
 app.use("/api/admissions", aiRoutes({ getAI }));
 app.use("/api/admin", adminFactsRoutes());
+app.use("/api/contact", contactRoutes());
+app.use("/api/feedback", feedbackRoutes({ getAI }));
 
 /* ---------------------------- Error handling ----------------------------- */
 // Central error handler (prevents ugly crashes)

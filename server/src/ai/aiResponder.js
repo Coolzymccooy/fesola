@@ -1,44 +1,47 @@
-
-
-
 const Ajv = require("ajv");
-const aiResponseSchema = require("../schemas/aiResponse.schema.json");
-const { systemPrompt, userPrompt } = require("./promptTemplates");
+const aiResponseSchema = require("../facts/schemas/aiResponse.schema.json");
+const {
+  systemPrompt,
+  userPrompt,
+  enrollmentSystemPrompt,
+  enrollmentUserPrompt,
+  feedbackAnalysisPrompt,
+  campusMatcherSystemPrompt,
+  campusMatcherUserPrompt,
+} = require("./promptTemplates");
 const { validateAiJson } = require("./safetyChecks");
 
 const ajv = new Ajv({ allErrors: true, allowUnionTypes: true });
 const validateResponse = ajv.compile(aiResponseSchema);
 
-function extractJson(text) {
-  // try direct parse first
-  try { return JSON.parse(text); } catch {}
+const MODEL = "gemini-2.0-flash";
 
-  // try to find the first JSON object in the text
+function extractJson(text) {
+  try { return JSON.parse(text); } catch {}
   const start = text.indexOf("{");
   const end = text.lastIndexOf("}");
   if (start >= 0 && end > start) {
-    const slice = text.slice(start, end + 1);
-    return JSON.parse(slice);
+    return JSON.parse(text.slice(start, end + 1));
   }
   throw new Error("Model did not return valid JSON");
 }
 
-async function respond({ ai, facts, message }) {
+async function callGemini(ai, systemInstruction, userMessage) {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
-    contents: [{ role: "user", parts: [{ text: userPrompt(message) }] }],
-    config: {
-      systemInstruction: systemPrompt(facts),
-      // (If your SDK supports it, keep it. If not, harmless.)
-      responseMimeType: "application/json"
-    }
+    model: MODEL,
+    contents: [{ role: "user", parts: [{ text: userMessage }] }],
+    config: { systemInstruction, responseMimeType: "application/json" },
   });
-
-  const text =
+  return (
     response?.text ||
     response?.candidates?.[0]?.content?.parts?.map((p) => p.text).filter(Boolean).join("") ||
-    "";
+    ""
+  );
+}
 
+// ── Standard admissions chat ──────────────────
+async function respond({ ai, facts, message, language = "en" }) {
+  const text = await callGemini(ai, systemPrompt(facts, language), userPrompt(message));
   const aiJson = extractJson(text);
 
   const ok = validateResponse(aiJson);
@@ -58,4 +61,30 @@ async function respond({ ai, facts, message }) {
   return aiJson;
 }
 
-module.exports = { respond };
+// ── Enrollment wizard ─────────────────────────
+async function enrollmentTurn({ ai, facts, message, collectedData, language = "en" }) {
+  const text = await callGemini(
+    ai,
+    enrollmentSystemPrompt(facts, language),
+    enrollmentUserPrompt(message, collectedData)
+  );
+  return extractJson(text);
+}
+
+// ── Feedback intelligence ─────────────────────
+async function analyseFeedback({ ai, feedbackEntries }) {
+  const text = await callGemini(ai, feedbackAnalysisPrompt(feedbackEntries), "Analyse now.");
+  return extractJson(text);
+}
+
+// ── Campus matcher ────────────────────────────
+async function matchCampus({ ai, facts, age, location, requirements }) {
+  const text = await callGemini(
+    ai,
+    campusMatcherSystemPrompt(facts),
+    campusMatcherUserPrompt(age, location, requirements)
+  );
+  return extractJson(text);
+}
+
+module.exports = { respond, enrollmentTurn, analyseFeedback, matchCampus };
