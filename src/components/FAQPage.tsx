@@ -42,7 +42,7 @@ const FAQPage: React.FC<Props> = ({ onContactClick }) => {
           <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse"></span>
           Prestigious Information Desk
         </div>
-        <h1 className="text-6xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8]">
+        <h1 className="text-4xl sm:text-6xl lg:text-9xl font-black tracking-tighter uppercase leading-[0.8] break-words w-full px-4">
           <span className="text-blue-950 serif italic block">COMMON</span>
           <span className="text-slate-300 serif italic opacity-40" style={{ WebkitTextStroke: '2px #1e3a8a' }}>ANSWERS.</span>
         </h1>

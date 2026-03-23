@@ -59,7 +59,7 @@ const ResourcesPage: React.FC<Props> = ({ onApplyClick, onContactClick }) => {
   return (
     <div className="max-w-7xl mx-auto px-6 py-24">
       <div className="text-center mb-32 no-print">
-        <h1 className="text-5xl md:text-9xl font-black tracking-tighter uppercase italic leading-[0.8] text-blue-950">RESOURCES.</h1>
+        <h1 className="text-4xl sm:text-5xl lg:text-9xl font-black tracking-tighter uppercase italic leading-[0.8] text-blue-950 break-words w-full px-4">RESOURCES.</h1>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 no-print">

@@ -148,7 +148,7 @@ const FeedbackPage: React.FC = () => {
           <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
           AI-Powered Feedback
         </div>
-        <h1 className="text-6xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8] inline-block">
+        <h1 className="text-4xl sm:text-6xl lg:text-9xl font-black tracking-tighter uppercase leading-[0.8] inline-block break-words w-full px-4">
           <span className="text-blue-950 serif italic block md:inline">YOUR</span>
           <span className="text-slate-200 serif italic md:ml-4 block md:inline opacity-40" style={{ WebkitTextStroke: '2px #1e3a8a' }}>VOICE.</span>
         </h1>

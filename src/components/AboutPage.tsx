@@ -16,7 +16,7 @@ const AboutPage: React.FC<Props> = ({ onContactClick }) => {
           <span className="w-2 h-2 rounded-full bg-blue-600"></span>
           World-Class Educational Foundation
         </div>
-        <h1 className="text-6xl md:text-9xl font-black mb-8 tracking-tighter text-blue-950 serif italic leading-none uppercase">
+        <h1 className="text-4xl sm:text-6xl lg:text-9xl font-black mb-8 tracking-tighter text-blue-950 serif italic leading-none uppercase break-words px-4">
           Our <span className="text-slate-300 font-normal opacity-50">Legacy.</span>
         </h1>
         <p className="text-slate-600 text-xl md:text-2xl max-w-3xl mx-auto font-semibold leading-relaxed">
@@ -56,7 +56,7 @@ const AboutPage: React.FC<Props> = ({ onContactClick }) => {
         <div className="relative group sticky top-[200px] perspective-1000">
           <div className="relative rounded-[5rem] overflow-hidden aspect-[4/5] shadow-3xl border-[16px] border-white glass bg-white transform-gpu transition-all duration-1000 group-hover:rotate-y-[-5deg] group-hover:scale-105">
             <img 
-              src="./proprietress.jpg" 
+              src="/images/proprietress.jpg" 
               alt="Mrs. Sola Iyiola - School Proprietress" 
               className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-1000" 
               onError={(e) => {
