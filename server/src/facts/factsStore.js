@@ -3,7 +3,7 @@ const path = require("path");
 const Ajv = require("ajv");
 
 const factsPath = path.join(__dirname, "school_facts.json");
-const schoolFactsSchema = require("../schemas/schoolFacts.schema.json");
+const schoolFactsSchema = require("./schemas/schoolFacts.schema.json");
 
 const ajv = new Ajv({ allErrors: true, allowUnionTypes: true });
 const validateFacts = ajv.compile(schoolFactsSchema);
