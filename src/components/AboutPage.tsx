@@ -27,7 +27,7 @@ const AboutPage: React.FC<Props> = ({ onContactClick }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start mb-40 relative z-20">
         <div className="space-y-16">
           <div className="group relative perspective-1000">
-            <div className="relative glass bg-white/70 backdrop-blur-3xl p-16 rounded-[4rem] border border-white shadow-2xl transition-all duration-700">
+            <div className="relative glass bg-white/70 backdrop-blur-3xl p-16 rounded-[4rem] border border-white shadow-2xl transition-all duration-700 transform-gpu group-hover:-translate-y-4 group-hover:rotate-x-2 group-hover:rotate-y-[2deg] group-hover:shadow-[0_40px_80px_rgba(30,58,138,0.15)] group-hover:scale-[1.02]">
               <div className="flex items-center gap-4 mb-10">
                 <div className="w-12 h-px bg-blue-200"></div>
                 <h2 className="text-[11px] font-black text-blue-600 uppercase tracking-[0.5em]">School Vision</h2>
@@ -41,7 +41,7 @@ const AboutPage: React.FC<Props> = ({ onContactClick }) => {
           </div>
           
           <div className="group relative perspective-1000">
-             <div className="relative glass bg-white/70 backdrop-blur-3xl p-16 rounded-[4rem] border border-white shadow-2xl transition-all duration-700">
+             <div className="relative glass bg-white/70 backdrop-blur-3xl p-16 rounded-[4rem] border border-white shadow-2xl transition-all duration-700 transform-gpu group-hover:-translate-y-4 group-hover:rotate-x-2 group-hover:rotate-y-[-2deg] group-hover:shadow-[0_40px_80px_rgba(30,58,138,0.15)] group-hover:scale-[1.02]">
                 <div className="flex items-center gap-4 mb-10">
                   <div className="w-12 h-px bg-emerald-200"></div>
                   <h2 className="text-[11px] font-black text-emerald-600 uppercase tracking-[0.5em]">School Mission</h2>

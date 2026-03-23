@@ -17,6 +17,7 @@ module.exports = function aiRoutes({ getAI }) {
       const out = await respond({ ai, facts, message, language });
       res.json({ ...out, text: out.answer });
     } catch (e) {
+      console.error("[Gemini API Error]:", e);
       res.status(500).json({ error: e?.message || "Server error", details: e?.details || null });
     }
   });
@@ -39,6 +40,7 @@ module.exports = function aiRoutes({ getAI }) {
       const out = await enrollmentTurn({ ai, facts, message, collectedData, language });
       res.json(out);
     } catch (e) {
+      console.error("[Gemini API Error]:", e);
       res.status(500).json({ error: e?.message || "Server error", details: e?.details || null });
     }
   });
@@ -71,6 +73,7 @@ module.exports = function aiRoutes({ getAI }) {
       const out = await matchCampus({ ai, facts, age, location, requirements });
       res.json(out);
     } catch (e) {
+      console.error("[Gemini API Error]:", e);
       res.status(500).json({ error: e?.message || "Server error", details: e?.details || null });
     }
   });

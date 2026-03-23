@@ -21,8 +21,15 @@ const app = express();
 
 /* ------------------------------ Env loading ------------------------------ */
 // Load server/.env locally (Render/Vercel should use dashboard env vars)
+const rootEnvPath = path.join(process.cwd(), "..", ".env.local");
+const altRootEnvPath = path.join(process.cwd(), ".env.local");
 const envPath = path.join(process.cwd(), "server", ".env");
-if (fs.existsSync(envPath)) {
+
+if (fs.existsSync(rootEnvPath)) {
+  require("dotenv").config({ path: rootEnvPath });
+} else if (fs.existsSync(altRootEnvPath)) {
+  require("dotenv").config({ path: altRootEnvPath });
+} else if (fs.existsSync(envPath)) {
   require("dotenv").config({ path: envPath });
 } else {
   require("dotenv").config();
@@ -45,7 +52,7 @@ const ALLOW_VERCEL_PREVIEWS = String(process.env.ALLOW_VERCEL_PREVIEWS || "true"
   .toLowerCase()
   .trim() === "true";
 
-const SERVER_API_KEY = process.env.API_KEY || process.env.GEMINI_API_KEY || "";
+const SERVER_API_KEY = process.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY || process.env.API_KEY || "";
 
 /* ------------------------------ CORS helper ------------------------------ */
 function isAllowedOrigin(origin) {
@@ -139,5 +146,11 @@ app.listen(PORT, "0.0.0.0", () => {
   console.log(
     `[fesola-backend] ALLOW_VERCEL_PREVIEWS=${ALLOW_VERCEL_PREVIEWS}`
   );
-  console.log(`[fesola-backend] API_KEY loaded? ${Boolean(SERVER_API_KEY)}`);
+  let maskedKey = "NONE";
+  if (SERVER_API_KEY && SERVER_API_KEY.length > 10) {
+    maskedKey = SERVER_API_KEY.substring(0, 5) + "..." + SERVER_API_KEY.substring(SERVER_API_KEY.length - 5);
+  } else if (SERVER_API_KEY) {
+    maskedKey = "***";
+  }
+  console.log(`[fesola-backend] API_KEY loaded? ${Boolean(SERVER_API_KEY)} (${maskedKey})`);
 });

@@ -63,10 +63,10 @@ const FAQPage: React.FC<Props> = ({ onContactClick }) => {
           >
             <button 
               onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-              className="w-full p-10 md:p-14 text-left flex justify-between items-center group/btn"
+              className="w-full p-6 md:p-8 text-left flex justify-between items-center group/btn"
             >
-              <div className="flex items-center gap-10">
-                <div className={`w-16 h-16 rounded-[2rem] flex items-center justify-center transition-all duration-1000 shadow-3xl
+              <div className="flex items-center gap-6 md:gap-10">
+                <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center transition-all duration-1000 shadow-xl
                   ${openIdx === idx ? 'bg-blue-600 text-white rotate-y-[360deg]' : 'bg-white text-slate-400 group-hover/btn:text-blue-600'}
                 `}>
                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -27,7 +27,8 @@ import NewsPage from './src/components/NewsPage';
 import SchoolGallery from './src/components/SchoolGallery';
 import { locations } from './data/locations';
 import AdminFactsPage from "./src/pages/AdminFactsPage";
-
+import { Preloader } from "./src/components/Preloader";
+import { CustomCursor } from "./src/components/CustomCursor";
 
 export type View = 'home' | 'about' | 'admissions' | 'faq' | 'resources' | 'careers' | 'feedback' | 'news' | 'adminFacts';
 
@@ -100,6 +101,8 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#ffffff] text-[#1a1a1a] selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
+      <Preloader />
+      <CustomCursor />
       <div className="fixed top-0 left-0 right-0 z-[70]">
         <AnnouncementTicker />
         

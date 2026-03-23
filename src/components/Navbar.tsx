@@ -82,12 +82,12 @@ const Navbar: React.FC<Props> = ({ activeView, onApplyClick, onNavClick }) => {
 
       {/* Desktop Sub-Nav - Dark Background */}
       <div className="hidden xl:block bg-[#0f172a] overflow-x-auto no-scrollbar border-t border-white/5 relative z-[70]">
-        <div className="w-full flex items-stretch h-14 whitespace-nowrap px-20">
+        <div className="w-full flex items-stretch h-10 whitespace-nowrap px-10">
           {subNavItems.map((item) => (
             <button
               key={item.label}
               onClick={() => handleNav(item.target)}
-              className={`flex items-center gap-2 px-6 text-[11px] font-black tracking-widest transition-all border-r border-white/5 relative group transform-gpu overflow-hidden
+              className={`flex items-center gap-1.5 px-4 text-[9px] font-black tracking-widest transition-all border-r border-white/5 relative group transform-gpu overflow-hidden
                 ${(item.isDramatic || item.isExclusive)
                   ? 'bg-gradient-to-b from-blue-900/40 to-transparent text-white border-x border-white/5' 
                   : activeView === item.target ? 'text-white bg-blue-500/10' : 'text-slate-400 hover:text-white hover:bg-white/5'}
@@ -130,7 +130,7 @@ const Navbar: React.FC<Props> = ({ activeView, onApplyClick, onNavClick }) => {
                 <button
                   key={item.label}
                   onClick={() => handleNav(item.target)}
-                  className="text-4xl font-black text-left text-white/50 hover:text-white transition-all serif italic uppercase tracking-tighter"
+                  className="text-2xl sm:text-4xl font-black text-left text-white/50 hover:text-white transition-all serif italic uppercase tracking-tighter"
                 >
                   {item.label}
                 </button>

@@ -131,7 +131,7 @@ const handleGenerateVirtualTour = async () => {
   return (
     <div className="max-w-7xl mx-auto px-6 py-24">
       <div className="text-center mb-32 space-y-10">
-        <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black tracking-tighter leading-none break-words w-full px-4">
+        <h1 className="text-[12vw] sm:text-6xl lg:text-8xl font-black tracking-tighter leading-none break-words w-full px-4 overflow-hidden">
           <span className="text-blue-950 serif italic block">ADMISSIONS</span>
           <span
             className="text-slate-300 serif italic opacity-40 uppercase"
