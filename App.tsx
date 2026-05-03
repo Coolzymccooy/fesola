@@ -16,7 +16,6 @@ import EnrollmentWizard from './src/components/EnrollmentWizard';
 import JobApplyModal from './src/components/JobApplyModal';
 import GalleryModal from './src/components/GalleryModal';
 import AIAssistant from './src/components/AIAssistant';
-import CampusMatcher from './src/components/CampusMatcher';
 import AboutPage from './src/components/AboutPage';
 import AdmissionsPage from './src/components/AdmissionsPage';
 import FAQPage from './src/components/FAQPage';
@@ -126,8 +125,6 @@ const App: React.FC = () => {
             />
 
             <SchoolStats />
-
-            <CampusMatcher />
 
             <EventsSection onSeeAll={() => handleNavClick('news')} />
 

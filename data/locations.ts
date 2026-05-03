@@ -1,20 +1,20 @@
 
-import { CampusLocation } from '../types';
+import { SchoolLocation } from '../types';
 
-export const locations: CampusLocation[] = [
+export const locations: SchoolLocation[] = [
   {
     id: "abule-egba",
-    name: "Fesola Main Campus (Abule Egba)",
+    name: "Fesola International Kiddies School (Abule Egba)",
     addressLines: [
       "5, Puposola Street, off Amusan Road",
       "Abule Egba, Lagos State"
     ],
     contacts: [
       { label: "Principal (School Head)", phones: ["08034273061", "08028728136"] },
-      { label: "Administrative Secretary", phones: ["09062981731", "08035391617"] },
+      { label: "Administrative Secretary", phones: ["08067615845"] },
       {
         label: "Accounts & Admissions",
-        phones: ["09062981739", "08062981739"]
+        phones: ["09029524059"]
       }
     ]
   }

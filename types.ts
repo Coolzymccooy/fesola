@@ -4,7 +4,7 @@ export interface ContactDetail {
   phones: string[];
 }
 
-export interface CampusLocation {
+export interface SchoolLocation {
   id: string;
   name: string;
   addressLines: string[];

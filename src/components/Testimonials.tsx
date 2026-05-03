@@ -4,17 +4,17 @@ import React from 'react';
 const Testimonials: React.FC = () => {
   const reviews = [
     {
-      name: "Mrs. Adeyemi",
+      name: "Mrs. Olarewaju",
       role: "Parent",
       text: "Fesola International has transformed my child's approach to learning. The teachers are incredibly supportive and professional.",
     },
     {
-      name: "Mr. Chukwu",
+      name: "Mr. Fadare",
       role: "Parent of Alumnus",
       text: "The foundation my son received here made his transition to secondary school seamless. Excellence is truly their culture.",
     },
     {
-      name: "Dr. Fatima",
+      name: "Dr. Adedokun",
       role: "Guardian",
       text: "A world-class environment right here in Abule Egba. We couldn't be happier with the progress we've seen in our wards.",
     }

@@ -8,10 +8,10 @@ interface Props {
 
 const CareersPage: React.FC<Props> = ({ onContactClick, onApply }) => {
   const roles = [
-    { title: 'Class Teacher (Primary)', type: 'Full-time', location: 'Omole Phase 1' },
-    { title: 'STEM Coordinator', type: 'Full-time', location: 'Alausa Campus' },
-    { title: 'School Nurse', type: 'Full-time', location: 'Omole Phase 2' },
-    { title: 'French Teacher', type: 'Part-time', location: 'Multiple' },
+    { title: 'Class Teacher (Primary)', type: 'Full-time', location: 'Abule Egba' },
+    { title: 'STEM Coordinator', type: 'Full-time', location: 'Abule Egba' },
+    { title: 'School Nurse', type: 'Full-time', location: 'Abule Egba' },
+    { title: 'French Teacher', type: 'Part-time', location: 'Abule Egba' },
   ];
 
   return (

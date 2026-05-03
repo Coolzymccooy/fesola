@@ -1,9 +1,9 @@
 
 import React from 'react';
-import { CampusLocation } from '@/types';
+import { SchoolLocation } from '@/types';
 
 interface Props {
-  locations: CampusLocation[];
+  locations: SchoolLocation[];
   onInquire: (campusName: string) => void;
 }
 
