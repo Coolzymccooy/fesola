@@ -12,19 +12,19 @@ const LocationSection: React.FC<Props> = ({ locations, onInquire }) => {
     {
       title: "Academic Excellence Symposium",
       desc: "Annual presentation of research and creative projects by our senior scholars.",
-      date: "May 20, 2025",
+      date: "May 20, 2026",
       type: "Academic"
     },
     {
       title: "Cultural Diversity Festival",
       desc: "Celebrating the rich heritage of our students through food, dance, and fashion.",
-      date: "June 12, 2025",
+      date: "June 12, 2026",
       type: "Culture"
     },
     {
       title: "Fesola Kiddies Funfair",
       desc: "A day of games, laughter, and community bonding for all families and friends.",
-      date: "July 05, 2025",
+      date: "July 05, 2026",
       type: "Social"
     }
   ];

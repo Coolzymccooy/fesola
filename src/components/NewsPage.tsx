@@ -5,14 +5,14 @@ const NewsPage: React.FC = () => {
 const news = [
   {
     title: "Champions of the Field: Inter-House Sports Highlights",
-    date: "March 15, 2025",
+    date: "March 15, 2026",
     category: "Sports",
     excerpt: "Relive the excitement of our annual sports festival where teamwork and excellence were on full display across all grade levels.",
     img: "/images/celebration.jpg",
   },
   {
     title: "Musical Excellence: Recorder Performance Day",
-    date: "February 28, 2025",
+    date: "February 28, 2026",
     category: "Creative Arts",
     excerpt: "Our scholars showcased their musical prowess with a mesmerizing recorder performance during the founder's day celebration.",
     img: "/images/recorders.jpg",

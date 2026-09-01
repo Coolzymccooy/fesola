@@ -21,9 +21,9 @@ const ResourcesPage: React.FC<Props> = ({ onApplyClick, onContactClick }) => {
 
   const resources: Resource[] = [
     { 
-      name: '2024/2025 Academic Calendar', 
+      name: '2026/2027 Academic Calendar',
       type: 'PDF', size: '1.2MB', accent: 'from-blue-500 to-indigo-600', fileName: 'Calendar.html',
-      content: ["Term 1: Resumption - Sept 11, 2024", "Term 2: Resumption - Jan 8, 2025", "Term 3: Resumption - April 28, 2025"]
+      content: ["Term 1: Resumption - Sept 14, 2026", "Term 2: Resumption - Jan 11, 2027", "Term 3: Resumption - April 19, 2027"]
     },
     { 
       name: 'PTA Official Handbook', 

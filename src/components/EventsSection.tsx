@@ -32,7 +32,7 @@ const EventsSection: React.FC<Props> = ({ onSeeAll }) => {
             <div className="group cursor-pointer">
               <div className="flex gap-5 items-start mb-4">
                 <div className="bg-blue-800 text-white p-4 rounded-2xl text-center min-w-[80px] shadow-2xl shadow-blue-800/30 group-hover:scale-105 group-hover:bg-blue-900 transition-all duration-500">
-                  <div className="text-[10px] font-black uppercase tracking-widest opacity-80">Apr 2025</div>
+                  <div className="text-[10px] font-black uppercase tracking-widest opacity-80">Apr 2026</div>
                   <div className="text-3xl font-black serif">09</div>
                 </div>
                 <div className="space-y-2 pt-1">
@@ -48,7 +48,7 @@ const EventsSection: React.FC<Props> = ({ onSeeAll }) => {
             <div className="group cursor-pointer">
               <div className="flex gap-5 items-start mb-4">
                 <div className="bg-blue-800 text-white p-4 rounded-2xl text-center min-w-[80px] shadow-2xl shadow-blue-800/30 group-hover:scale-105 group-hover:bg-blue-900 transition-all duration-500">
-                  <div className="text-[10px] font-black uppercase tracking-widest opacity-80">Jan 2025</div>
+                  <div className="text-[10px] font-black uppercase tracking-widest opacity-80">Jan 2026</div>
                   <div className="text-3xl font-black serif">22</div>
                 </div>
                 <div className="space-y-2 pt-1">
